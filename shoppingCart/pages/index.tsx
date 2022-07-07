@@ -7,10 +7,10 @@ import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
 
   const [data, setData] = useState([]);
-  const [dataTwo, setDataTwo] = useState([]);
+  const [dataLow, setDataLow] = useState([]);
 
   const getData = () => {
-    fetch('./json/data.json').then((response) => {
+    fetch('./json/dataHigh.json').then((response) => {
       response.json().then((data) => {
         setData(data)
       });
@@ -23,10 +23,10 @@ const Home: NextPage = () => {
     getData()
   },[])
 
-  const getDataTwo = () => {
-    fetch('./json/datatwo.json').then((response) => {
+  const getDataLow = () => {
+    fetch('./json/dataLow.json').then((response) => {
       response.json().then((data) => {
-        setDataTwo(data)
+        setDataLow(data)
       });
     }).catch((err) => {
       console.error('Erro', err);
@@ -34,11 +34,16 @@ const Home: NextPage = () => {
   }
 
   useEffect(()=>{
-    getDataTwo()
+    getDataLow()
   },[])
 
-
-
+  const handleAddition = () => {
+    const i = data?.itemMetadata?.items.map(x => parseInt(x.seller)).reduce((a, b) => a + b, 0);
+    const x = dataLow?.itemMetadata?.items.map(x => parseInt(x.seller)).reduce((a, b) => a + b, 0);
+    const total = i + x;
+    return total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+}
+  
   return (
     
     <>
@@ -65,20 +70,20 @@ const Home: NextPage = () => {
                 <div className={styles.container_items_name}>
                 
                 <div>{item?.name}</div>
-                <div>R${item?.seller}</div>
-                <div>R${item?.seller}</div>
+                <div>{parseInt(item?.seller).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</div>
+                <div>{parseInt(item?.seller).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</div>
                 </div>
               </div>
             ))}
 
-            {dataTwo?.itemMetadata?.items?.map((item) => (
+            {dataLow?.itemMetadata?.items?.map((item) => (
               <div key={item?.id} className={styles.container_items_list}>
                 <div className={styles.image_container}><img width="100%" src={item?.imageUrl}/></div>
                 <div className={styles.container_items_name}>
                 
                 <div>{item?.name}</div>
-                <div>R${item?.seller}</div>
-                <div>R${item?.seller}</div>
+                <div>{parseInt(item?.seller).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</div>
+                <div>{parseInt(item?.seller).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</div>
                 </div>
               </div>
             ))}
@@ -88,7 +93,7 @@ const Home: NextPage = () => {
           <div className={styles.container_total_items}>
                 <div className={styles.container_total}>
                 <div>Total</div>
-                <div>R$</div>
+                <div>{handleAddition()}</div>
 
                 </div>
                 <div className={styles.container_frete}><p className={styles.container_frete_p}>Parabéns, sua compra tem frete grátis !</p></div>
