@@ -21,9 +21,16 @@
 .container_itens_header{
   display: flex;
   justify-content: center;
+  align-items: center;
   border-bottom:  2px solid #e1e1e1;
   width: 100%;
-  height: 13%;
+  height: 10%;
+}
+
+.header_text{
+  font-size: 1.2rem;
+  font-weight: 800;
+ 
 }
 
 .container_itens_body{
@@ -38,7 +45,10 @@
 .container_items_name{
   display: flexbox;
   width: 55%;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding-top: 20px;
+  text-align: justify;
+ 
 }
 .image_container{
   border: 2px solid #e1e1e1;
@@ -46,7 +56,26 @@
   align-items: center;
   width: 30%;
   max-height: 120px;
-  
+}
+
+
+
+.items_title{
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.items_subtitle{
+  font-size: 0.7rem;
+  color: #a5a5a5;
+  margin-top: 5px;
+}
+
+.items_text{
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 3px;
 }
 
 .container_total_items{
@@ -54,7 +83,7 @@
   width: 100%;
   border-top:2px solid #e1e1e1;
   border-bottom:2px solid #e1e1e1;
-  min-height: 8rem;
+  min-height: auto;
   justify-items: center;
   display: flex;
   flex-direction: column;
@@ -67,8 +96,8 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem 0 2rem;
-  height: 4rem;
+  padding: 1.3rem;
+  
 }
 
 .container_frete{
@@ -79,8 +108,14 @@
   align-items: center;
   justify-content: center;
   height: 2.5rem;
-  margin-top: 0.5rem;
+  
   margin-bottom: 1rem;
+
+}
+
+.total_text{
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .container_frete_p{
