@@ -6,9 +6,9 @@ import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
 
-  const [dataHigh, setDataHigh] = useState([]);
-  const [dataLow, setDataLow] = useState([]);
-  const [total, setTotal] = useState();
+  const [dataHigh, setDataHigh] = useState<any>([]);
+  const [dataLow, setDataLow] = useState<any>([]);
+  const [total, setTotal] = useState<any>();
   const [show, setShow] = useState(false);
  
   const getData = () => {
@@ -45,8 +45,8 @@ const Home: NextPage = () => {
   })
 
   const handleAddition = () => {
-    const i = dataHigh?.itemMetadata?.items.map(x => parseInt(x.seller)).reduce((a, b) => a + b, 0);
-    const x = dataLow?.itemMetadata?.items.map(x => parseInt(x.seller)).reduce((a, b) => a + b, 0);
+    const i = dataHigh?.itemMetadata?.items.map((x : any)=> parseInt(x.seller)).reduce((a: number, b: number) => a + b, 0);
+    const x = dataLow?.itemMetadata?.items.map((x : any) => parseInt(x.seller)).reduce((a: number, b: number) => a + b, 0);
     const total = i + x;
     setTotal(total)
 }
@@ -76,7 +76,7 @@ const handleShow = () => {
               <p className={styles.header_text}>Meu Carrinho</p>
             </div>   
             <div className={styles.container_itens_body}>
-            {dataHigh?.itemMetadata?.items?.map((item) => (
+            {dataHigh?.itemMetadata?.items?.map((item: any) => (
               <div key={item?.id} className={styles.container_items_list}>
                 <div className={styles.image_container}><img width="100%" src={item?.imageUrl}/></div>
                 <div className={styles.container_items_name}>    
@@ -87,7 +87,7 @@ const handleShow = () => {
               </div>
             ))}
 
-            {dataLow?.itemMetadata?.items?.map((item) => (
+            {dataLow?.itemMetadata?.items?.map((item: any) => (
               <div key={item?.id} className={styles.container_items_list}>
                 <div className={styles.image_container}><img width="100%" src={item?.imageUrl}/></div>
                 <div className={styles.container_items_name}>  
